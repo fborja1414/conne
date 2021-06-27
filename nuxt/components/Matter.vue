@@ -9,10 +9,9 @@ import Matter from "matter-js";
 
 export default {
   name: "Matter",
-  // module aliases
 
   methods: {
-    //update canvas window width/height on change
+    // update canvas window width/height on change
     windowResize(event) {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
@@ -37,39 +36,17 @@ export default {
       // create an engine
       var engine = Engine.create();
 
-      // create a renderer
-      // var render = Render.create({
-      //   canvas: document.getElementById("canvas"),
-      //   engine: engine,
-      //   options: {
-      //     wireframes: false,
-      //     background: "transparent",
-      //     wireframebackground: false,
-      //     width: canvas.width,
-      //     height: canvas.height,
-      //   },
-      // });
-
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
+      canvas.background = "transparent";
       var world = engine.world;
       //mouse control
-      // var mouse = Mouse.create(render.canvas),
+
       const mouseConstraint = MouseConstraint.create(engine, {
         element: canvas,
-        // mouse: mouse,
-        // constraint: {
-        //   stiffness: 0.2,
-        //   render: {
-        //     visible: false,
-        //   },
-        // },
       });
 
-      //keep mouse in sync with rendering
-      // render.mouse = mouse;
-
-      // create two boxes and a ground
+      // create boxes and a ground
       var boxA = Bodies.rectangle(400, 200, 100, 100, {
         density: 1.0006,
         restitution: 0,
@@ -101,6 +78,7 @@ export default {
       });
 
       // add all of the bodies to the world
+      //set timeout to wait for gifparser to load
       setTimeout(
         () => {
           Composite.add(world, [
@@ -119,9 +97,6 @@ export default {
 
       let frameNumber = 0;
 
-      // // run the renderer
-      // Render.run(render);
-
       // create runner
       var runner = Runner.create();
 
@@ -129,11 +104,6 @@ export default {
       const ctx = canvas.getContext("2d");
 
       var myGif;
-
-      // Can not load gif cross domain unless it has CORS header
-
-      // timeout just waits till script has been parsed and executed
-      // then starts loading a gif
 
       myGif = this.GIF();
       var myGif2 = this.GIF();
@@ -144,14 +114,9 @@ export default {
       myGif2.load(logo2);
       myGif3.load(logo3);
       myGif4.load(logo4);
-      myGif5.load(logo5);
+      myGif5.load(logo5); //loads images to gifparser
 
-      // // Function draws an image
-      // function drawImage(image, x, y, scale, rot) {
-      //   ctx.setTransform(scale, 0, 0, scale, x, y);
-      //   ctx.drawImage(image, -image.width / 2, -image.height / 2);
-      // }
-
+      //draws the gif with arguments(gifobject, bodyobject, t , width, height)
       function drawGif(MyGif, body, t, w, h) {
         const offset = (~~frameNumber * w) % MyGif.width;
         const { x, y } = body.position;
@@ -191,41 +156,6 @@ export default {
       requestAnimationFrame(rerender);
       //rerender and custom render
     },
-
-    //load gif function
-    //   gifParser: function () {
-    //     const ctx = canvas.getContext("2d");
-
-    //     var myGif;
-
-    //     var logo = require("@/assets/logo.gif");
-    //     // Can not load gif cross domain unless it has CORS header
-    //     const gifURL = logo;
-    //     // timeout just waits till script has been parsed and executed
-    //     // then starts loading a gif
-    //     myGif = this.GIF(); // creates a new gif
-    //     myGif.load(gifURL);
-
-    //     // Function draws an image
-    //     function drawImage(image, x, y, scale, rot) {
-    //       ctx.setTransform(scale, 0, 0, scale, x, y);
-    //       ctx.drawImage(image, -image.width / 2, -image.height / 2);
-    //     }
-
-    //     // main update function
-    //     function update(timer) {
-    //       if (myGif) {
-    //         // If gif object defined
-    //         if (!myGif.loading) {
-    //           ctx.drawImage(myGif.image, 0, 0);
-    //         }
-    //       }
-
-    //       requestAnimationFrame(update);
-    //     }
-    //     requestAnimationFrame(update);
-    //   },
-    // },
 
     //gifreader
     GIF: function () {
@@ -767,14 +697,16 @@ export default {
 
   mounted() {
     this.startMatter();
-    // this.gifParser();
     window.addEventListener("resize", this.windowResize);
   },
 };
 </script>
-
 <style>
 #canvas {
-  position: absolute;
+  display: inline-block;
+  position: fixed;
+  z-index: 3;
+  height: 100vh;
+  background: transparent;
 }
 </style>
