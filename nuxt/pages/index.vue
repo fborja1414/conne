@@ -59,18 +59,21 @@
       </div>
       <div class="shipping">Shipping &amp; Returns</div>
       <div class="info">How are we sustainable?</div>
+      <div class="footer">
+        <div class="footer-images">
+          <img src="@/assets/sd.png" />
+          <img src="@/assets/qwq.png" />
+          <img src="@/assets/jkjk.png" />
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import Matter from "@/components/Matter.vue";
-
 export default {
   name: "index",
-  components: {
-    Matter
-  },
+
   methods: {
     updateCart() {
       this.cart++;
@@ -162,6 +165,7 @@ export default {
 }
 
 .header {
+  position: relative;
   //display: flex;
   z-index: 3;
   font-size: 1rem;
@@ -204,6 +208,7 @@ li {
   img {
     width: 100%;
     margin-bottom: 5rem;
+    z-index: -1;
   }
 }
 .description-container {
@@ -215,7 +220,8 @@ li {
 }
 
 .title {
-  font-size: 25px;
+  font-size: 30px;
+  font-weight: bold;
 }
 
 .price {
@@ -298,5 +304,14 @@ li {
   margin-left: 7rem;
   font-size: 18px;
   cursor: pointer;
+}
+.footer {
+  position: absolute;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr;
+  grid-row: 1/2;
+  bottom: 0;
+  right: 0;
 }
 </style>

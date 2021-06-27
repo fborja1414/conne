@@ -18,7 +18,7 @@ export default {
     },
 
     //matterjs function
-    startMatter: function () {
+    startMatter: function() {
       var Engine = Matter.Engine,
         Render = Matter.Render,
         Runner = Matter.Runner,
@@ -36,45 +36,54 @@ export default {
       // create an engine
       var engine = Engine.create();
 
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      canvas.background = "transparent";
+      // canvas.width = 600;
+      // canvas.height = 600;
+      // canvas.background = "transparent";
       var world = engine.world;
       //mouse control
 
       const mouseConstraint = MouseConstraint.create(engine, {
-        element: canvas,
+        element: canvas
       });
+
+      mouseConstraint.mouse.element.removeEventListener(
+        "mousewheel",
+        mouseConstraint.mouse.mousewheel
+      );
+      mouseConstraint.mouse.element.removeEventListener(
+        "DOMMouseScroll",
+        mouseConstraint.mouse.mousewheel
+      );
 
       // create boxes and a ground
       var boxA = Bodies.rectangle(400, 200, 100, 100, {
         density: 1.0006,
         restitution: 0,
         friction: 0,
-        strokeStyle: "black",
+        strokeStyle: "black"
       });
       var boxB = Bodies.rectangle(400, 200, 100, 100, {
         density: 1.0006,
         restitution: 0,
-        friction: 0,
+        friction: 0
       });
       var boxC = Bodies.rectangle(400, 200, 100, 100, {
         density: 1.0006,
         restitution: 0,
-        friction: 0,
+        friction: 0
       });
       var boxD = Bodies.rectangle(400, 200, 100, 100, {
         density: 1.0006,
         restitution: 0,
-        friction: 0,
+        friction: 0
       });
       var boxE = Bodies.rectangle(400, 200, 100, 100, {
         density: 1.0006,
         restitution: 0,
-        friction: 0,
+        friction: 0
       });
       var ground = Bodies.rectangle(canvas.width, 700, 20000, 1, {
-        isStatic: true,
+        isStatic: true
       });
 
       // add all of the bodies to the world
@@ -88,7 +97,7 @@ export default {
             boxD,
             boxE,
             ground,
-            mouseConstraint,
+            mouseConstraint
           ]);
         },
 
@@ -158,7 +167,7 @@ export default {
     },
 
     //gifreader
-    GIF: function () {
+    GIF: function() {
       // **NOT** for commercial use.
       var timerID; // timer handle for set time out usage
       var st; // holds the stream object when loading.
@@ -176,14 +185,14 @@ export default {
         UNKNOWN: 0x01, // not sure what this is but need to skip it in parser
         IMAGE: 0x2c,
         EOF: 59, // This is entered as decimal
-        EXT: 0x21,
+        EXT: 0x21
       };
       // simple buffered stream used to read from the file
-      var Stream = function (data) {
+      var Stream = function(data) {
         this.data = new Uint8ClampedArray(data);
         this.pos = 0;
         var len = this.data.length;
-        this.getString = function (count) {
+        this.getString = function(count) {
           // returns a string from current pos of len count
           var s = "";
           while (count--) {
@@ -191,7 +200,7 @@ export default {
           }
           return s;
         };
-        this.readSubBlocks = function () {
+        this.readSubBlocks = function() {
           // reads a set of blocks as a string
           var size,
             count,
@@ -204,7 +213,7 @@ export default {
           } while (size !== 0 && this.pos < len);
           return data;
         };
-        this.readSubBlocksB = function () {
+        this.readSubBlocksB = function() {
           // reads a set of blocks as binary
           var size,
             count,
@@ -277,7 +286,7 @@ export default {
           colours.push([
             st.data[st.pos++],
             st.data[st.pos++],
-            st.data[st.pos++],
+            st.data[st.pos++]
           ]);
         }
         return colours;
@@ -323,7 +332,7 @@ export default {
       function parseImg() {
         // decodes image data to create the indexed pixel image
         var deinterlace, frame, bitField;
-        deinterlace = function (width) {
+        deinterlace = function(width) {
           // de interlace pixel data if needed
           var lines, fromLine, pass, toline;
           lines = pixelBufSize / width;
@@ -524,7 +533,7 @@ export default {
           gif.onprogress({
             bytesRead: st.pos,
             totalBytes: st.data.length,
-            frame: gif.frames.length,
+            frame: gif.frames.length
           });
         }
         setTimeout(parseBlock, 0); // parsing frame async so processes can get some time in.
@@ -563,7 +572,7 @@ export default {
         // starts the load
         var ajax = new XMLHttpRequest();
         ajax.responseType = "arraybuffer";
-        ajax.onload = function (e) {
+        ajax.onload = function(e) {
           if (e.target.status === 404) {
             error("File not found");
           } else if (e.target.status >= 200 && e.target.status < 300) {
@@ -574,7 +583,7 @@ export default {
         };
         ajax.open("GET", filename, true);
         ajax.send();
-        ajax.onerror = function (e) {
+        ajax.onerror = function(e) {
           error("File error");
         };
         this.src = filename;
@@ -689,23 +698,24 @@ export default {
         pause: pause, // call to pause
         seek: seek, // call to seek to time
         seekFrame: seekFrame, // call to seek to frame
-        togglePlay: togglePlay, // call to toggle play and pause state
+        togglePlay: togglePlay // call to toggle play and pause state
       };
       return gif;
-    },
+    }
   },
 
   mounted() {
     this.startMatter();
     window.addEventListener("resize", this.windowResize);
-  },
+  }
 };
 </script>
-<style>
+<style lang="scss" scoped>
 #canvas {
   display: inline-block;
   position: fixed;
-  z-index: 3;
+  top: 0px;
+  z-index: 2;
   height: 100vh;
   background: transparent;
 }
