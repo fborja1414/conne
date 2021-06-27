@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "core-js": "^3.9.1",
+    "matter-attractors": "^0.1.6",
     "matter-js": "^0.17.1",
     "node-sass": "^5.0.0",
     "nuxt": "^2.15.3",

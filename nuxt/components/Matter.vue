@@ -26,12 +26,15 @@ export default {
         Composite = Matter.Composite,
         MouseConstraint = Matter.MouseConstraint,
         Mouse = Matter.Mouse;
+      //Events = Matter.Events;
 
       var logo = require("@/assets/logo.gif");
       var logo2 = require("@/assets/logo2.gif");
       var logo3 = require("@/assets/logo3.gif");
       var logo4 = require("@/assets/logo4.gif");
       var logo5 = require("@/assets/logo5.gif");
+
+      Matter.use("matter-attractors");
 
       // create an engine
       var engine = Engine.create();
@@ -40,6 +43,7 @@ export default {
       // canvas.height = 600;
       // canvas.background = "transparent";
       var world = engine.world;
+      world.gravity.scale = 0;
       //mouse control
 
       const mouseConstraint = MouseConstraint.create(engine, {
@@ -60,27 +64,32 @@ export default {
         density: 1.0006,
         restitution: 0,
         friction: 0,
-        strokeStyle: "black"
+        strokeStyle: "black",
+        position: { x: 1150, y: 600 }
       });
       var boxB = Bodies.rectangle(400, 200, 100, 100, {
         density: 1.0006,
         restitution: 0,
-        friction: 0
+        friction: 0,
+        position: { x: 1120, y: 200 }
       });
       var boxC = Bodies.rectangle(400, 200, 100, 100, {
         density: 1.0006,
         restitution: 0,
-        friction: 0
+        friction: 0,
+        position: { x: 1070, y: 380 }
       });
       var boxD = Bodies.rectangle(400, 200, 100, 100, {
         density: 1.0006,
         restitution: 0,
-        friction: 0
+        friction: 0,
+        position: { x: 650, y: 350 }
       });
       var boxE = Bodies.rectangle(400, 200, 100, 100, {
         density: 1.0006,
         restitution: 0,
-        friction: 0
+        friction: 0,
+        position: { x: 550, y: 600 }
       });
       var ground = Bodies.rectangle(canvas.width, 700, 20000, 1, {
         isStatic: true
@@ -88,21 +97,16 @@ export default {
 
       // add all of the bodies to the world
       //set timeout to wait for gifparser to load
-      setTimeout(
-        () => {
-          Composite.add(world, [
-            boxA,
-            boxB,
-            boxC,
-            boxD,
-            boxE,
-            ground,
-            mouseConstraint
-          ]);
-        },
 
-        25 * 1000
-      );
+      Composite.add(world, [
+        boxA,
+        boxB,
+        boxC,
+        boxD,
+        boxE,
+        ground,
+        mouseConstraint
+      ]);
 
       let frameNumber = 0;
 
@@ -150,7 +154,7 @@ export default {
       // run the engine
       Runner.run(runner, engine);
 
-      function rerender() {
+      function rerender(mouse, x, y) {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
         drawGif(myGif, boxA, 20, 300, 347);
