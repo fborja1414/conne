@@ -235,7 +235,6 @@ li {
 }
 
 .size-container {
-  //position: absolute;
   display: grid;
   margin: 4rem;
   justify-content: center;
