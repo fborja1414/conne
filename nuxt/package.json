@@ -6,8 +6,7 @@
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
-    "generate": "nuxt generate",
-    "deploy": "push-dir --dir=dist --branch=gh-pages --cleanup"
+    "generate": "nuxt generate"
   },
   "dependencies": {
     "core-js": "^3.9.1",
@@ -17,8 +16,5 @@
     "nuxt": "^2.15.3",
     "sass": "^1.35.1",
     "sass-loader": "^10.1.1"
-  },
-  "devDependencies": {
-    "push-dir": "^0.4.1"
   }
 }
