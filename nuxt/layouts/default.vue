@@ -10,13 +10,14 @@ import Matter from "@/components/Matter.vue";
 
 export default {
   name: "layout",
+
   components: {
     Matter
   }
 };
 </script>
 
-<style>
+<style lang="scss">
 html {
   font-family: "Neue Haas Grotesk", -apple-system, BlinkMacSystemFont,
     "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -38,6 +39,9 @@ html {
 
 .body-content {
   position: relative;
-  overflow: scroll;
+  display: flex;
+  z-index: 3;
+  margin: 0;
+  padding: 0 55px;
 }
 </style>

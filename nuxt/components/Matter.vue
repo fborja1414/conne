@@ -1,6 +1,6 @@
 <template>
   <div>
-    <canvas id="canvas"></canvas>
+    <canvas id="canvas" width="600" height="600"></canvas>
   </div>
 </template>
 
@@ -9,16 +9,21 @@ import Matter from "matter-js";
 
 export default {
   name: "Matter",
-
   methods: {
-    // update canvas window width/height on change
     windowResize(event) {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
-    },
+      console.log("canvas-height" + canvas.height);
+      console.log("canvas-width" + canvas.width);
 
+      //document.getElementById("header").clientWidth;
+      // console.log(canvasW);
+      // var canvasHeight = window.innerHeight;
+      //this.canvasWidth = canvasW;
+    },
     //matterjs function
     startMatter: function() {
+      //console.log(canvasWidth);
       var Engine = Matter.Engine,
         Render = Matter.Render,
         Runner = Matter.Runner,
@@ -39,7 +44,7 @@ export default {
       // create an engine
       var engine = Engine.create();
 
-      // canvas.width = 600;
+      // canvas.width = canvas.innerHeight;
       // canvas.height = 600;
       // canvas.background = "transparent";
       var world = engine.world;
@@ -65,48 +70,60 @@ export default {
         restitution: 0,
         friction: 0,
         strokeStyle: "black",
-        position: { x: 1150, y: 600 }
+        position: { x: 330, y: 200 }
       });
       var boxB = Bodies.rectangle(400, 200, 100, 100, {
         density: 1.0006,
         restitution: 0,
         friction: 0,
-        position: { x: 1120, y: 200 }
+        position: { x: 1020, y: 2000 }
       });
       var boxC = Bodies.rectangle(400, 200, 100, 100, {
         density: 1.0006,
         restitution: 0,
         friction: 0,
-        position: { x: 1070, y: 380 }
+        position: { x: 370, y: 1380 }
       });
       var boxD = Bodies.rectangle(400, 200, 100, 100, {
         density: 1.0006,
         restitution: 0,
         friction: 0,
-        position: { x: 650, y: 350 }
+        position: { x: 1050, y: 500 }
       });
       var boxE = Bodies.rectangle(400, 200, 100, 100, {
         density: 1.0006,
         restitution: 0,
         friction: 0,
-        position: { x: 550, y: 600 }
+        position: { x: 850, y: 1200 }
       });
-      var ground = Bodies.rectangle(canvas.width, 700, 20000, 1, {
+      var ground = Bodies.rectangle(canvas.width, canvas.height, 20000, 3, {
         isStatic: true
       });
+      // var topWall = Bodies.rectangle(400, 50, 720, 20, { isStatic: true });
+      // var leftWall = Bodies.rectangle(50, 210, 20, 300, { isStatic: true });
+      // var rightWall = Bodies.rectangle(750, 210, 20, 300, { isStatic: true });
+      // var bottomWall = Bodies.rectangle(400, 350, 720, 20, { isStatic: true });
+
+      // //var box = Bodies.rectangle(460, 120, 40, 40);
 
       // add all of the bodies to the world
       //set timeout to wait for gifparser to load
-
+      // setTimeout(() => {
       Composite.add(world, [
         boxA,
         boxB,
         boxC,
         boxD,
         boxE,
-        ground,
+        //ground,
+        // topWall,
+        // leftWall,
+        // rightWall,
+        // bottomWall,
         mouseConstraint
       ]);
+      //   ]);
+      // }, 30 * 1000);
 
       let frameNumber = 0;
 
@@ -128,6 +145,21 @@ export default {
       myGif3.load(logo3);
       myGif4.load(logo4);
       myGif5.load(logo5); //loads images to gifparser
+
+      function resizeCanvasToDisplaySize(canvas) {
+        // look up the size the canvas is being displayed
+        const width = canvas.clientWidth;
+        const height = canvas.clientHeight;
+
+        // If it's resolution does not match change it
+        if (canvas.width !== width || canvas.height !== height) {
+          canvas.width = width;
+          canvas.height = height;
+          return true;
+        }
+
+        return false;
+      }
 
       //draws the gif with arguments(gifobject, bodyobject, t , width, height)
       function drawGif(MyGif, body, t, w, h) {
@@ -156,6 +188,7 @@ export default {
 
       function rerender(mouse, x, y) {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
+        resizeCanvasToDisplaySize(ctx.canvas);
 
         drawGif(myGif, boxA, 20, 300, 347);
         drawGif(myGif2, boxB, 20, 350, 347);
@@ -716,11 +749,15 @@ export default {
 </script>
 <style lang="scss" scoped>
 #canvas {
-  display: inline-block;
-  position: fixed;
+  //display: inline-block;
+  position: absolute;
   top: 0px;
-  z-index: 2;
-  height: 100vh;
+  left: 0px;
+  z-index: 4;
+  width: 100%;
+  height: 100%;
+  //height: 100vh;
   background: transparent;
+  //pointer-events: none;
 }
 </style>

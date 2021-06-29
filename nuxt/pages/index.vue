@@ -5,12 +5,13 @@
         <img src="~assets/logo.png" />
       </div>
       <div class="image-container">
-        <img class="pic1" src="@/assets/PIC.png" />
-        <img class="pic2" src="@/assets/PIC2.png" />
-        <img class="pic3" src="@/assets/PIC3.png" />
+        <img class="pic1" src="@/assets/PIC.png" draggable="false" />
+        <img class="pic2" src="@/assets/PIC2.png" draggable="false" />
+        <img class="pic3" src="@/assets/PIC3.png" draggable="false" />
+        <div class="extra-space"></div>
       </div>
     </div>
-    <div class="header">
+    <div class="header" id="header">
       <ul class="nav">
         <li>HOME</li>
         <li>ABOUT</li>
@@ -51,17 +52,20 @@
             X-Large
           </div>
         </div>
-      </div>
-      <div class="buy-button" @click="updateCart">
-        <div class="cart-text">
-          ADD TO CART
+        <div class="buy-button" @click="updateCart">
+          <div class="cart-text">
+            ADD TO CART
+          </div>
         </div>
+        <div class="shipping">Shipping &amp; Returns</div>
+        <div class="info">How are we sustainable?</div>
       </div>
-      <div class="shipping">Shipping &amp; Returns</div>
-      <div class="info">How are we sustainable?</div>
       <div class="footer">
         <div class="footer-images">
-          <img src="@/assets/sd.png" />
+          <div class="space-container">
+            <img src="@/assets/sd.png" />
+            <div class="space"></div>
+          </div>
           <img src="@/assets/qwq.png" />
           <img src="@/assets/jkjk.png" />
         </div>
@@ -150,6 +154,7 @@ export default {
       medium: false,
       large: false,
       xlarge: false
+      // canvasWidth: 0
     };
   }
 };
@@ -159,18 +164,17 @@ export default {
 @import "~assets/_typography.scss";
 .body {
   display: flex;
-  z-index: 3;
-  margin: 0;
-  padding: 0 55px;
+  width: 100%;
 }
 
 .header {
   position: relative;
   //display: flex;
-  z-index: 3;
+  z-index: 4;
   font-size: 1rem;
   justify-content: flex-end;
   width: 50vw;
+  pointer-events: auto;
 }
 
 .content {
@@ -204,11 +208,15 @@ li {
   position: relative;
   max-width: 50vw;
   border: none;
+
   //justify-content: flex-start;
   img {
     width: 100%;
     margin-bottom: 5rem;
     z-index: -1;
+  }
+  img:nth-child(3) {
+    margin: 0;
   }
 }
 .description-container {
@@ -229,10 +237,12 @@ li {
 }
 
 .size-container {
+  position: absolute;
   display: grid;
   margin: 4rem;
   justify-content: center;
   //align-items: center;
+  z-index: 100;
 }
 
 .sizing {
@@ -241,6 +251,9 @@ li {
 .drop-down {
   display: grid;
   grid-template-columns: repeat(5, 6vw);
+  padding-bottom: 2rem;
+  font-size: 1vw;
+  z-index: 5 !important;
 }
 
 .s {
@@ -284,34 +297,68 @@ li {
   padding: 10px;
   border: solid 1px black;
   width: 10rem;
-  margin-left: 7rem;
   cursor: pointer;
   background-color: #adff2f;
+  z-index: 5 !important;
 }
 
 .shipping {
   padding-top: 3rem;
   padding-bottom: 10px;
-  margin-left: 7rem;
+  //margin-left: 7rem;
 
   font-size: 18px;
   cursor: pointer;
+  // z-index: 5 !important;
 }
 
 .info {
   padding-top: 10px;
   padding-bottom: 10px;
-  margin-left: 7rem;
+  //margin-left: 7rem;
   font-size: 18px;
   cursor: pointer;
+  //z-index: 5 !important;
 }
 .footer {
+  max-width: 51vw;
   position: absolute;
+  right: -55px;
+  bottom: 0px;
+}
+
+.footer-images {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: 1fr;
-  grid-row: 1/2;
-  bottom: 0;
-  right: 0;
+  grid-template-columns: repeat(3, 16.667vw);
+
+  img {
+    width: 100%;
+    border-top: 1px solid black;
+  }
+  img:nth-child(3) {
+    border-right: none;
+    border-left: 1px solid black;
+  }
+  img:nth-child(1) {
+    border: none;
+  }
+}
+.space {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border-top: 1px solid black;
+  border-right: 1px solid black;
+}
+
+.space-container {
+  position: relative;
+}
+
+.extra-space {
+  margin: 0;
+  padding: 0;
+  height: 116px;
 }
 </style>
