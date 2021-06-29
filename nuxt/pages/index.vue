@@ -53,9 +53,7 @@
           </div>
         </div>
         <div class="buy-button" @click="updateCart">
-          <div class="cart-text">
-            ADD TO CART
-          </div>
+          <div class="cart-text">ADD TO CART</div>
         </div>
         <div class="shipping">Shipping &amp; Returns</div>
         <div class="info">How are we sustainable?</div>
@@ -143,7 +141,7 @@ export default {
           else this.xlarge = true;
           break;
       }
-    }
+    },
   },
 
   data() {
@@ -153,10 +151,10 @@ export default {
       small: false,
       medium: false,
       large: false,
-      xlarge: false
+      xlarge: false,
       // canvasWidth: 0
     };
-  }
+  },
 };
 </script>
 
@@ -237,7 +235,7 @@ li {
 }
 
 .size-container {
-  position: absolute;
+  //position: absolute;
   display: grid;
   margin: 4rem;
   justify-content: center;
