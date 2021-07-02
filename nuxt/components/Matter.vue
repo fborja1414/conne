@@ -1,6 +1,6 @@
 <template>
   <div>
-    <canvas id="canvas" width="600" height="600"></canvas>
+    <canvas id="canvas"></canvas>
   </div>
 </template>
 
@@ -11,19 +11,14 @@ export default {
   name: "Matter",
   methods: {
     windowResize(event) {
+      // this.startMatter();
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
-      console.log("canvas-height" + canvas.height);
-      console.log("canvas-width" + canvas.width);
-
-      //document.getElementById("header").clientWidth;
-      // console.log(canvasW);
-      // var canvasHeight = window.innerHeight;
-      //this.canvasWidth = canvasW;
     },
     //matterjs function
-    startMatter: function() {
+    startMatter: function () {
       //console.log(canvasWidth);
+
       var Engine = Matter.Engine,
         Render = Matter.Render,
         Runner = Matter.Runner,
@@ -32,7 +27,6 @@ export default {
         MouseConstraint = Matter.MouseConstraint,
         Mouse = Matter.Mouse;
       //Events = Matter.Events;
-
       var logo = require("@/assets/logo.gif");
       var logo2 = require("@/assets/logo2.gif");
       var logo3 = require("@/assets/logo3.gif");
@@ -48,11 +42,11 @@ export default {
       // canvas.height = 600;
       // canvas.background = "transparent";
       var world = engine.world;
-      world.gravity.scale = 0;
+      //world.gravity.scale = 0;
       //mouse control
 
       const mouseConstraint = MouseConstraint.create(engine, {
-        element: canvas
+        element: canvas,
       });
 
       mouseConstraint.mouse.element.removeEventListener(
@@ -70,60 +64,71 @@ export default {
         restitution: 0,
         friction: 0,
         strokeStyle: "black",
-        position: { x: 330, y: 200 }
+        position: { x: 330, y: 200 },
       });
       var boxB = Bodies.rectangle(400, 200, 100, 100, {
         density: 1.0006,
         restitution: 0,
         friction: 0,
-        position: { x: 1020, y: 2000 }
+        position: { x: 1020, y: 2000 },
       });
       var boxC = Bodies.rectangle(400, 200, 100, 100, {
         density: 1.0006,
         restitution: 0,
         friction: 0,
-        position: { x: 370, y: 1380 }
+        position: { x: 370, y: 1380 },
       });
       var boxD = Bodies.rectangle(400, 200, 100, 100, {
         density: 1.0006,
         restitution: 0,
         friction: 0,
-        position: { x: 1050, y: 500 }
+        position: { x: 1050, y: 500 },
       });
       var boxE = Bodies.rectangle(400, 200, 100, 100, {
         density: 1.0006,
         restitution: 0,
         friction: 0,
-        position: { x: 850, y: 1200 }
+        position: { x: 850, y: 1200 },
       });
-      var ground = Bodies.rectangle(canvas.width, canvas.height, 20000, 3, {
-        isStatic: true
+      var ground = Bodies.rectangle(
+        canvas.clientWidth,
+        canvas.clientHeight - 60,
+        20000,
+        3,
+        {
+          isStatic: true,
+        }
+      );
+      var leftWall = Bodies.rectangle(50, 210, 30, 3000, { isStatic: true });
+      var rightWall = Bodies.rectangle(canvas.clientWidth, 210, 30, 3000, {
+        isStatic: true,
       });
+
+      console.log("groundheight" + canvas.clientHeight);
+      console.log(ground);
       // var topWall = Bodies.rectangle(400, 50, 720, 20, { isStatic: true });
-      // var leftWall = Bodies.rectangle(50, 210, 20, 300, { isStatic: true });
-      // var rightWall = Bodies.rectangle(750, 210, 20, 300, { isStatic: true });
       // var bottomWall = Bodies.rectangle(400, 350, 720, 20, { isStatic: true });
 
       // //var box = Bodies.rectangle(460, 120, 40, 40);
 
       // add all of the bodies to the world
       //set timeout to wait for gifparser to load
-      // setTimeout(() => {
-      Composite.add(world, [
-        boxA,
-        boxB,
-        boxC,
-        boxD,
-        boxE,
-        //ground,
-        // topWall,
-        // leftWall,
-        // rightWall,
-        // bottomWall,
-        mouseConstraint
-      ]);
-      //   ]);
-      // }, 30 * 1000);
+      setTimeout(() => {
+        Composite.add(world, [
+          boxA,
+          boxB,
+          boxC,
+          boxD,
+          boxE,
+          ground,
+          //ground,
+          // topWall,
+          leftWall,
+          rightWall,
+          // bottomWall,
+          mouseConstraint,
+        ]);
+      }, 20 * 1000);
 
       let frameNumber = 0;
 
@@ -148,9 +153,8 @@ export default {
 
       function resizeCanvasToDisplaySize(canvas) {
         // look up the size the canvas is being displayed
-        const width = canvas.clientWidth;
-        const height = canvas.clientHeight;
-
+        const width = window.innerWidth;
+        const height = window.innerHeight;
         // If it's resolution does not match change it
         if (canvas.width !== width || canvas.height !== height) {
           canvas.width = width;
@@ -183,6 +187,8 @@ export default {
         }
       }
 
+      //Events.on(mouseconstraint, "mousemove", callback)
+
       // run the engine
       Runner.run(runner, engine);
 
@@ -195,6 +201,7 @@ export default {
         drawGif(myGif3, boxC, 20, 350, 347);
         drawGif(myGif4, boxD, 20, 350, 347);
         drawGif(myGif5, boxE, 20, 350, 347);
+
         frameNumber += 0.001;
         Engine.update(engine);
         requestAnimationFrame(rerender);
@@ -204,7 +211,7 @@ export default {
     },
 
     //gifreader
-    GIF: function() {
+    GIF: function () {
       // **NOT** for commercial use.
       var timerID; // timer handle for set time out usage
       var st; // holds the stream object when loading.
@@ -222,14 +229,14 @@ export default {
         UNKNOWN: 0x01, // not sure what this is but need to skip it in parser
         IMAGE: 0x2c,
         EOF: 59, // This is entered as decimal
-        EXT: 0x21
+        EXT: 0x21,
       };
       // simple buffered stream used to read from the file
-      var Stream = function(data) {
+      var Stream = function (data) {
         this.data = new Uint8ClampedArray(data);
         this.pos = 0;
         var len = this.data.length;
-        this.getString = function(count) {
+        this.getString = function (count) {
           // returns a string from current pos of len count
           var s = "";
           while (count--) {
@@ -237,7 +244,7 @@ export default {
           }
           return s;
         };
-        this.readSubBlocks = function() {
+        this.readSubBlocks = function () {
           // reads a set of blocks as a string
           var size,
             count,
@@ -250,7 +257,7 @@ export default {
           } while (size !== 0 && this.pos < len);
           return data;
         };
-        this.readSubBlocksB = function() {
+        this.readSubBlocksB = function () {
           // reads a set of blocks as binary
           var size,
             count,
@@ -323,7 +330,7 @@ export default {
           colours.push([
             st.data[st.pos++],
             st.data[st.pos++],
-            st.data[st.pos++]
+            st.data[st.pos++],
           ]);
         }
         return colours;
@@ -369,7 +376,7 @@ export default {
       function parseImg() {
         // decodes image data to create the indexed pixel image
         var deinterlace, frame, bitField;
-        deinterlace = function(width) {
+        deinterlace = function (width) {
           // de interlace pixel data if needed
           var lines, fromLine, pass, toline;
           lines = pixelBufSize / width;
@@ -570,7 +577,7 @@ export default {
           gif.onprogress({
             bytesRead: st.pos,
             totalBytes: st.data.length,
-            frame: gif.frames.length
+            frame: gif.frames.length,
           });
         }
         setTimeout(parseBlock, 0); // parsing frame async so processes can get some time in.
@@ -609,7 +616,7 @@ export default {
         // starts the load
         var ajax = new XMLHttpRequest();
         ajax.responseType = "arraybuffer";
-        ajax.onload = function(e) {
+        ajax.onload = function (e) {
           if (e.target.status === 404) {
             error("File not found");
           } else if (e.target.status >= 200 && e.target.status < 300) {
@@ -620,7 +627,7 @@ export default {
         };
         ajax.open("GET", filename, true);
         ajax.send();
-        ajax.onerror = function(e) {
+        ajax.onerror = function (e) {
           error("File error");
         };
         this.src = filename;
@@ -735,16 +742,16 @@ export default {
         pause: pause, // call to pause
         seek: seek, // call to seek to time
         seekFrame: seekFrame, // call to seek to frame
-        togglePlay: togglePlay // call to toggle play and pause state
+        togglePlay: togglePlay, // call to toggle play and pause state
       };
       return gif;
-    }
+    },
   },
 
   mounted() {
     this.startMatter();
     window.addEventListener("resize", this.windowResize);
-  }
+  },
 };
 </script>
 <style lang="scss" scoped>
@@ -754,9 +761,9 @@ export default {
   top: 0px;
   left: 0px;
   z-index: 4;
-  width: 100%;
-  height: 100%;
-  //height: 100vh;
+  width: 100vw;
+  // height: 100%;
+  height: 100vh;
   background: transparent;
   //pointer-events: none;
 }

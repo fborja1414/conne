@@ -58,6 +58,7 @@
         <div class="shipping">Shipping &amp; Returns</div>
         <div class="info">How are we sustainable?</div>
       </div>
+      <Matter />
       <div class="footer">
         <div class="footer-images">
           <div class="space-container">
@@ -73,9 +74,13 @@
 </template>
 
 <script>
+import Matter from "@/components/Matter.vue";
+
 export default {
   name: "index",
-
+  components: {
+    Matter,
+  },
   methods: {
     updateCart() {
       this.cart++;
@@ -166,7 +171,7 @@ export default {
 }
 
 .header {
-  position: relative;
+  //position: relative;
   //display: flex;
   z-index: 4;
   font-size: 1rem;

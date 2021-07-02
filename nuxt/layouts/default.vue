@@ -1,19 +1,12 @@
 <template>
   <div class="body-content">
     <Nuxt />
-    <Matter />
   </div>
 </template>
 
 <script>
-import Matter from "@/components/Matter.vue";
-
 export default {
   name: "layout",
-
-  components: {
-    Matter
-  }
 };
 </script>
 
