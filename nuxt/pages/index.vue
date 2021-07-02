@@ -2,12 +2,12 @@
   <div class="body">
     <div class="content">
       <div class="logo">
-        <img src="~assets/logo.png" />
+        <img class="image" src="~assets/logo.png" />
       </div>
       <div class="image-container">
         <img class="pic1" src="@/assets/PIC.png" draggable="false" />
-        <img class="pic2" src="@/assets/PIC2.png" draggable="false" />
-        <img class="pic3" src="@/assets/PIC3.png" draggable="false" />
+        <img class="pic2" src="@/assets/PIC3.png" draggable="false" />
+        <img class="pic3" src="@/assets/PIC2.png" draggable="false" />
         <div class="extra-space"></div>
       </div>
     </div>
@@ -18,6 +18,13 @@
         <li>SHOP</li>
         <li>CART({{ cart }})</li>
       </ul>
+      <div class="toggle-container">
+        <div class="toggle" @click="toggle3D()">
+          Toggle 3D:
+          <div v-if="dimensiontoggle">OFF</div>
+          <div v-if="!dimensiontoggle">ON</div>
+        </div>
+      </div>
       <div class="description-container">
         <div class="title">THE DABY</div>
         <div class="price">$68 USD</div>
@@ -53,7 +60,10 @@
           </div>
         </div>
         <div class="buy-button" @click="updateCart">
-          <div class="cart-text">ADD TO CART</div>
+          <div class="cart-text" v-if="!carttext" @click="cartUpdated()">
+            ADD TO CART
+          </div>
+          <div class="updated" v-if="carttext">ADDED</div>
         </div>
         <div class="shipping">Shipping &amp; Returns</div>
         <div class="info">How are we sustainable?</div>
@@ -69,7 +79,8 @@
           <img src="@/assets/jkjk.png" />
         </div>
       </div>
-      <Matter />
+
+      <Matter v-show="!dimensiontoggle" />
     </div>
   </div>
 </template>
@@ -82,9 +93,20 @@ export default {
   components: {
     Matter,
   },
+
   methods: {
     updateCart() {
       this.cart++;
+    },
+
+    toggle3D() {
+      if (this.dimensiontoggle == true) {
+        this.dimensiontoggle = false;
+        console.log("false");
+      } else {
+        this.dimensiontoggle = true;
+        console.log("true");
+      }
     },
 
     size(item) {
@@ -148,16 +170,34 @@ export default {
           break;
       }
     },
+    cartUpdated() {
+      this.carttext = true;
+      setTimeout(() => {
+        this.carttext = false;
+      }, 500);
+    },
+    // waitToggle() {
+    //   setTimeout(() => {
+    //     this.togglebutton = true;
+    //   }, 20 * 1000);
+    // },
+  },
+
+  mounted() {
+    // this.waitToggle();
   },
 
   data() {
     return {
       cart: 0,
       xsmall: false,
-      small: false,
+      small: true,
       medium: false,
       large: false,
       xlarge: false,
+      dimensiontoggle: false,
+      togglebutton: false,
+      carttext: false,
       // canvasWidth: 0
     };
   },
@@ -178,7 +218,7 @@ export default {
   font-size: 1rem;
   justify-content: flex-end;
   width: 50vw;
-  pointer-events: auto;
+  // pointer-events: auto;
 }
 
 .content {
@@ -189,10 +229,14 @@ export default {
 .logo {
   display: block;
   padding: 2rem 0;
-  img {
-    max-width: 25vw;
-  }
+  z-index: 5 !important;
+  pointer-events: auto;
   cursor: pointer;
+  .image {
+    max-width: 25vw;
+    z-index: 100 !important;
+    pointer-events: auto;
+  }
 }
 
 .nav {
@@ -203,9 +247,24 @@ export default {
   padding-bottom: 4rem;
 }
 
+// .toggle-container {
+//   display: flex;
+// }
+.toggle {
+  display: flex;
+  position: fixed;
+  right: 10px;
+  bottom: 10px;
+  // margin-left: 7rem;
+  z-index: 5 !important;
+  cursor: pointer;
+}
+
 li {
   padding: 1rem;
   cursor: pointer;
+  pointer-events: auto;
+  z-index: 5 !important;
 }
 
 .image-container {
@@ -223,6 +282,7 @@ li {
     margin: 0;
   }
 }
+
 .description-container {
   display: grid;
   padding-top: 5rem;
@@ -259,6 +319,10 @@ li {
   z-index: 5 !important;
 }
 
+.toggle-on {
+  opacity: 1;
+}
+
 .s {
   padding: 10px;
   border-top: solid 2px black;
@@ -280,6 +344,16 @@ li {
 .active {
   font-weight: bold;
   cursor: pointer;
+}
+
+.pic1,
+.pic2,
+.pic3 {
+  border-top: 1px solid black;
+
+  border-bottom: 1px solid black;
+
+  border-left: 1px solid black;
 }
 
 .container {
@@ -308,20 +382,23 @@ li {
 .shipping {
   padding-top: 3rem;
   padding-bottom: 10px;
+  pointer-events: auto;
   //margin-left: 7rem;
-
+  width: 12rem;
   font-size: 18px;
   cursor: pointer;
-  // z-index: 5 !important;
+  z-index: 5 !important;
 }
 
 .info {
   padding-top: 10px;
   padding-bottom: 10px;
   //margin-left: 7rem;
+  width: 13rem;
   font-size: 18px;
   cursor: pointer;
-  //z-index: 5 !important;
+  pointer-events: auto;
+  z-index: 5 !important;
 }
 .footer {
   max-width: 51vw;

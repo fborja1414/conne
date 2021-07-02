@@ -66,25 +66,25 @@ export default {
         strokeStyle: "black",
         position: { x: 330, y: 200 },
       });
-      var boxB = Bodies.rectangle(400, 200, 100, 100, {
+      var boxB = Bodies.rectangle(400, 700, 100, 100, {
         density: 1.0006,
         restitution: 0,
         friction: 0,
         position: { x: 1020, y: 150 },
       });
-      var boxC = Bodies.rectangle(400, 200, 100, 100, {
+      var boxC = Bodies.rectangle(400, 400, 100, 100, {
         density: 1.0006,
         restitution: 0,
         friction: 0,
         position: { x: 870, y: 500 },
       });
-      var boxD = Bodies.rectangle(400, 200, 100, 100, {
+      var boxD = Bodies.rectangle(400, 700, 100, 100, {
         density: 1.0006,
         restitution: 0,
         friction: 0,
         position: { x: 1050, y: 650 },
       });
-      var boxE = Bodies.rectangle(400, 200, 100, 100, {
+      var boxE = Bodies.rectangle(400, 400, 100, 100, {
         density: 1.0006,
         restitution: 0,
         friction: 0,
