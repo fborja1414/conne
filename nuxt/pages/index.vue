@@ -58,7 +58,7 @@
         <div class="shipping">Shipping &amp; Returns</div>
         <div class="info">How are we sustainable?</div>
       </div>
-      <Matter />
+
       <div class="footer">
         <div class="footer-images">
           <div class="space-container">
@@ -69,6 +69,7 @@
           <img src="@/assets/jkjk.png" />
         </div>
       </div>
+      <Matter />
     </div>
   </div>
 </template>
@@ -325,7 +326,7 @@ li {
 .footer {
   max-width: 51vw;
   position: absolute;
-  right: -55px;
+  //right: 55px;
   bottom: 0px;
 }
 

@@ -70,31 +70,31 @@ export default {
         density: 1.0006,
         restitution: 0,
         friction: 0,
-        position: { x: 1020, y: 2000 },
+        position: { x: 1020, y: 150 },
       });
       var boxC = Bodies.rectangle(400, 200, 100, 100, {
         density: 1.0006,
         restitution: 0,
         friction: 0,
-        position: { x: 370, y: 1380 },
+        position: { x: 870, y: 500 },
       });
       var boxD = Bodies.rectangle(400, 200, 100, 100, {
         density: 1.0006,
         restitution: 0,
         friction: 0,
-        position: { x: 1050, y: 500 },
+        position: { x: 1050, y: 650 },
       });
       var boxE = Bodies.rectangle(400, 200, 100, 100, {
         density: 1.0006,
         restitution: 0,
         friction: 0,
-        position: { x: 850, y: 1200 },
+        position: { x: 550, y: 500 },
       });
       var ground = Bodies.rectangle(
         canvas.clientWidth,
         canvas.clientHeight - 60,
         20000,
-        3,
+        30,
         {
           isStatic: true,
         }
@@ -757,11 +757,11 @@ export default {
 <style lang="scss" scoped>
 #canvas {
   //display: inline-block;
-  position: absolute;
+  position: fixed;
   top: 0px;
   left: 0px;
   z-index: 4;
-  width: 100vw;
+  //width: 100vw;
   // height: 100%;
   height: 100vh;
   background: transparent;
