@@ -319,13 +319,13 @@ li {
   display: grid;
   grid-template-columns: repeat(5, 6vw);
   padding-bottom: 2rem;
-  font-size: 1vw;
+  font-size: 15px;
   z-index: 5 !important;
   @media only screen and (max-width: 1200px) {
     border: none;
     width: 30vw;
     display: block;
-    font-size: 1.5vw;
+    font-size: 17px;
     padding-bottom: 1rem;
   }
 }
