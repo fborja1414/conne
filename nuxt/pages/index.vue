@@ -11,7 +11,7 @@
         <div class="extra-space"></div>
       </div>
     </div>
-    <div class="header" id="header">
+    <div class="header neue-light" id="header">
       <ul class="nav">
         <li>HOME</li>
         <li>ABOUT</li>
@@ -26,9 +26,9 @@
         </div>
       </div>
       <div class="description-container">
-        <div class="title">THE DABY</div>
-        <div class="price">$68 USD</div>
-        <div class="description">
+        <div class="title neue-light">THE DABY</div>
+        <div class="price neue">$68 USD</div>
+        <div class="description neue">
           Launching the Daby in a beautiful neon green so that we can inject
           some more cool into your life. This model is wearing a size large for
           37" chest, 30.5" waist and 40.5" hips. Refer to the size guide for
@@ -39,41 +39,89 @@
       </div>
       <div class="size-container">
         <div class="container">
-          <div class="sizing">Select Size</div>
-          <div class="guide">Size Guide</div>
+          <div class="sizing neue">Select Size</div>
+          <div class="guide neue">Size Guide</div>
         </div>
-        <div class="drop-down">
-          <div class="s" :class="{ active: xsmall }" @click="size('xsmall')">
+        <div class="drop-down neue-light">
+          <div
+            class="s"
+            :class="{ active: xsmall }"
+            @click="
+              xsmall = true;
+              small = false;
+              medium = false;
+              large = false;
+              xlarge = false;
+            "
+          >
             X-Small
           </div>
-          <div class="s" :class="{ active: small }" @click="size('small')">
+          <div
+            class="s"
+            :class="{ active: small }"
+            @click="
+              xsmall = false;
+              small = true;
+              medium = false;
+              large = false;
+              xlarge = false;
+            "
+          >
             Small
           </div>
-          <div class="s" :class="{ active: medium }" @click="size('medium')">
+          <div
+            class="s"
+            :class="{ active: medium }"
+            @click="
+              xsmall = false;
+              small = false;
+              medium = true;
+              large = false;
+              xlarge = false;
+            "
+          >
             Medium
           </div>
-          <div class="s" :class="{ active: large }" @click="size('large')">
+          <div
+            class="s"
+            :class="{ active: large }"
+            @click="
+              xsmall = false;
+              small = false;
+              medium = false;
+              large = true;
+              xlarge = false;
+            "
+          >
             Large
           </div>
-          <div class="s l" :class="{ active: xlarge }" @click="size('xlarge')">
+          <div
+            class="s l"
+            :class="{ active: xlarge }"
+            @click="
+              xsmall = false;
+              small = false;
+              medium = false;
+              large = false;
+              xlarge = true;
+            "
+          >
             X-Large
           </div>
         </div>
         <div class="buy-button" @click="updateCart">
-          <div class="cart-text" v-if="!carttext" @click="cartUpdated()">
-            ADD TO CART
-          </div>
-          <div class="updated" v-if="carttext">ADDED</div>
+          <div class="cart-text neue-light" v-if="!carttext">ADD TO CART</div>
+          <div class="updated neue-light" v-if="carttext">ADDED</div>
         </div>
-        <div class="shipping">Shipping &amp; Returns</div>
-        <div class="info">How are we sustainable?</div>
+        <div class="shipping neue">Shipping &amp; Returns</div>
+        <div class="info neue">How are we sustainable?</div>
       </div>
 
       <div class="footer">
         <div class="footer-images">
           <div class="space-container">
-            <img src="@/assets/sd.png" />
             <div class="space"></div>
+            <img class="firstfooter" src="@/assets/sd.png" />
           </div>
           <img src="@/assets/qwq.png" />
           <img src="@/assets/jkjk.png" />
@@ -82,21 +130,36 @@
 
       <Matter v-show="!dimensiontoggle" />
     </div>
+    <list
+      class="list"
+      :cart="cart"
+      :small="small"
+      :xsmall="xsmall"
+      :medium="medium"
+      :large="large"
+      :xlarge="xlarge"
+    />
   </div>
 </template>
 
 <script>
 import Matter from "@/components/Matter.vue";
+import List from "@/components/List.vue";
 
 export default {
   name: "index",
   components: {
     Matter,
+    List,
   },
 
   methods: {
     updateCart() {
       this.cart++;
+      this.carttext = true;
+      setTimeout(() => {
+        this.carttext = false;
+      }, 500);
     },
 
     toggle3D() {
@@ -109,73 +172,7 @@ export default {
       }
     },
 
-    size(item) {
-      console.log("small");
-      switch (item) {
-        case "xsmall":
-          if (
-            this.xsmall == true ||
-            this.small == true ||
-            this.medium == true ||
-            this.large == true ||
-            this.xlarge == true
-          )
-            this.xsmall = false;
-          else this.xsmall = true;
-
-          break;
-        case "small":
-          if (
-            this.xsmall == true ||
-            this.small == true ||
-            this.medium == true ||
-            this.large == true ||
-            this.xlarge == true
-          )
-            this.small = false;
-          else this.small = true;
-          break;
-        case "medium":
-          if (
-            this.xsmall == true ||
-            this.small == true ||
-            this.medium == true ||
-            this.large == true ||
-            this.xlarge == true
-          )
-            this.medium = false;
-          else this.medium = true;
-          break;
-        case "large":
-          if (
-            this.xsmall == true ||
-            this.small == true ||
-            this.medium == true ||
-            this.large == true ||
-            this.xlarge == true
-          )
-            this.large = false;
-          else this.large = true;
-          break;
-        case "xlarge":
-          if (
-            this.xsmall == true ||
-            this.small == true ||
-            this.medium == true ||
-            this.large == true ||
-            this.xlarge == true
-          )
-            this.xlarge = false;
-          else this.xlarge = true;
-          break;
-      }
-    },
-    cartUpdated() {
-      this.carttext = true;
-      setTimeout(() => {
-        this.carttext = false;
-      }, 500);
-    },
+    // },
     // waitToggle() {
     //   setTimeout(() => {
     //     this.togglebutton = true;
@@ -191,14 +188,13 @@ export default {
     return {
       cart: 0,
       xsmall: false,
-      small: true,
+      small: false,
       medium: false,
       large: false,
       xlarge: false,
       dimensiontoggle: false,
       togglebutton: false,
       carttext: false,
-      // canvasWidth: 0
     };
   },
 };
@@ -291,6 +287,14 @@ li {
   font-size: 20px;
 }
 
+.neue {
+  @include neue;
+}
+
+.neue-light {
+  @include neue-light;
+}
+
 .title {
   font-size: 30px;
   font-weight: bold;
@@ -317,6 +321,13 @@ li {
   padding-bottom: 2rem;
   font-size: 1vw;
   z-index: 5 !important;
+  @media only screen and (max-width: 1200px) {
+    border: none;
+    width: 30vw;
+    display: block;
+    font-size: 1.5vw;
+    padding-bottom: 1rem;
+  }
 }
 
 .toggle-on {
@@ -329,6 +340,10 @@ li {
   border-right: solid 2px black;
   border-bottom: solid 2px black;
   overflow: hidden;
+  @media only screen and (max-width: 1200px) {
+    border: none;
+    padding: 0px;
+  }
 }
 
 .l {
@@ -440,5 +455,29 @@ li {
   margin: 0;
   padding: 0;
   height: 116px;
+}
+
+.firstfooter {
+  padding-top: 10px;
+}
+
+.list {
+  display: none;
+  //opacity: 0;
+}
+
+//media queries tablet portrait
+@media only screen and (max-width: 768px) {
+  .list {
+    opacity: 1;
+    display: block;
+    // display: none;
+  }
+  .content {
+    display: none;
+  }
+  .header {
+    display: none;
+  }
 }
 </style>

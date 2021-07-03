@@ -2,5 +2,10 @@
   font-family: neue-haas-grotesk-pro, sans-serif;
   font-weight: 400;
   font-style: normal;
-  src: url("@/assets/fonts/NeueHaasDisplayMediu.ttf") format("ttf");
+}
+
+@mixin neue-light {
+  font-family: neue-haas-grotesk-display, sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }

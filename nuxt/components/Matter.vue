@@ -14,6 +14,9 @@ export default {
       // this.startMatter();
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
+      if (window.innerWidth == 768) {
+        this.startMatter();
+      }
     },
     //matterjs function
     startMatter: function () {

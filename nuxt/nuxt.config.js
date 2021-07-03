@@ -16,7 +16,11 @@ export default {
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { hid: "description", name: "description", content: "" }
     ],
-    link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }]
+    link: [
+      { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
+      { rel: "stylesheet", href: "https://use.typekit.net/hvb3jfi.css" },
+      { rel: "stylesheet", href: "https://use.typekit.net/xbe8miv.css" }
+    ]
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -32,7 +36,6 @@ export default {
   buildModules: [],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {}
