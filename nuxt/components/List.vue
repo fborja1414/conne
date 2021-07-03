@@ -268,6 +268,7 @@ export default {
 .description {
   font-size: 20px;
   padding-bottom: 2rem;
+  width: 80vw;
 }
 .size-container {
   margin-top: 2rem;
