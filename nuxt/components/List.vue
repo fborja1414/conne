@@ -123,12 +123,9 @@
 </template>
 
 <script>
-import Matter from "@/components/Matter.vue";
 export default {
   name: "List",
-  components: {
-    Matter,
-  },
+
   props: {
     cart: Number,
     xsmall: Boolean,

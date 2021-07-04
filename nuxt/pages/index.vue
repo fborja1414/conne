@@ -18,6 +18,27 @@
         <li>SHOP</li>
         <li>CART({{ cart }})</li>
       </ul>
+      <div class="toggle-font">
+        Font Size:
+        <div
+          class="f"
+          @click="
+            eighteen = false;
+            twentysix = false;
+          "
+        >
+          12px
+        </div>
+        <div
+          class="f"
+          @click="
+            eighteen = true;
+            twentysix = false;
+          "
+        >
+          18px
+        </div>
+      </div>
       <div class="toggle-container">
         <div class="toggle" @click="toggle3D()">
           Toggle 3D:
@@ -25,8 +46,16 @@
           <div v-if="!dimensiontoggle">ON</div>
         </div>
       </div>
-      <div class="description-container">
-        <div class="title neue-light">THE DABY</div>
+      <div
+        class="description-container"
+        :class="{ eighteen: eighteen, twentysix: twentysix }"
+      >
+        <div
+          class="title neue-light"
+          :class="{ eighteen: eighteen, twentysix: twentysix }"
+        >
+          THE DABY
+        </div>
         <div class="price neue">$68 USD</div>
         <div class="description neue">
           Launching the Daby in a beautiful neon green so that we can inject
@@ -37,12 +66,18 @@
           pipeline.
         </div>
       </div>
-      <div class="size-container">
+      <div
+        class="size-container"
+        :class="{ eighteen: eighteen, twentysix: twentysix }"
+      >
         <div class="container">
           <div class="sizing neue">Select Size</div>
           <div class="guide neue">Size Guide</div>
         </div>
-        <div class="drop-down neue-light">
+        <div
+          class="drop-down neue-light"
+          :class="{ eighteen: eighteen, twentysix: twentysix }"
+        >
           <div
             class="s"
             :class="{ active: xsmall }"
@@ -110,12 +145,35 @@
           </div>
         </div>
         <div class="buy-button" @click="updateCart">
-          <div class="cart-text neue-light" v-if="!carttext">ADD TO CART</div>
-          <div class="updated neue-light" v-if="carttext">ADDED</div>
+          <div
+            class="cart-text neue-light"
+            :class="{ eighteen: eighteen, twentysix: twentysix }"
+            v-if="!carttext"
+          >
+            ADD TO CART
+          </div>
+          <div
+            class="updated neue-light"
+            :class="{ eighteen: eighteen, twentysix: twentysix }"
+            v-if="carttext"
+          >
+            ADDED
+          </div>
         </div>
-        <div class="shipping neue">Shipping &amp; Returns</div>
-        <div class="info neue">How are we sustainable?</div>
+        <div
+          class="shipping neue"
+          :class="{ eighteen: eighteen, twentysix: twentysix }"
+        >
+          Shipping &amp; Returns
+        </div>
+        <div
+          class="info neue"
+          :class="{ eighteen: eighteen, twentysix: twentysix }"
+        >
+          How are we sustainable?
+        </div>
       </div>
+      <Matter v-show="!dimensiontoggle" />
 
       <div class="footer">
         <div class="footer-images">
@@ -128,6 +186,7 @@
         </div>
       </div>
     </div>
+
     <list
       class="list"
       :cart="cart"
@@ -193,6 +252,8 @@ export default {
       dimensiontoggle: false,
       togglebutton: false,
       carttext: false,
+      eighteen: false,
+      twentysix: false,
     };
   },
 };
@@ -229,7 +290,9 @@ export default {
 }
 
 .logo {
-  display: block;
+  position: sticky;
+  top: 0px;
+  display: flex;
   padding: 2rem 0;
   z-index: 5 !important;
   pointer-events: auto;
@@ -248,6 +311,10 @@ export default {
   list-style: none;
   padding: 1rem;
   padding-bottom: 4rem;
+  position: sticky;
+  top: 0px;
+  mix-blend-mode: color-dodge;
+  //background: white;
 }
 
 // .toggle-container {
@@ -288,10 +355,10 @@ li {
 
 .description-container {
   display: grid;
-  padding-top: 5rem;
+  padding-top: 3rem;
   grid-template-columns: 30vw;
   justify-content: center;
-  font-size: 20px;
+  font-size: 12px;
 }
 
 .neue {
@@ -303,17 +370,18 @@ li {
 }
 
 .title {
-  font-size: 30px;
+  font-size: 15px;
   font-weight: bold;
 }
 
 .price {
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
 }
 
 .size-container {
   display: grid;
   margin: 4rem;
+  margin-bottom: 50rem;
   justify-content: center;
   //align-items: center;
   z-index: 100;
@@ -326,13 +394,13 @@ li {
   display: grid;
   grid-template-columns: repeat(5, 6vw);
   padding-bottom: 2rem;
-  font-size: 15px;
+  font-size: 12px;
   z-index: 5 !important;
   @media only screen and (max-width: 1200px) {
     border: none;
     width: 30vw;
     display: block;
-    font-size: 17px;
+    font-size: 12px;
     padding-bottom: 1rem;
   }
 }
@@ -382,7 +450,7 @@ li {
   display: flex;
   justify-content: space-between;
   line-height: 0.5em;
-  font-size: 18px;
+  font-size: 12px;
 }
 
 .guide {
@@ -401,13 +469,20 @@ li {
   z-index: 5 !important;
 }
 
+.cart-text {
+  font-size: 12px;
+}
+
+.updated {
+  font-size: 12px;
+}
 .shipping {
   padding-top: 3rem;
   padding-bottom: 10px;
   pointer-events: auto;
   //margin-left: 7rem;
   width: 12rem;
-  font-size: 18px;
+  font-size: 12px;
   cursor: pointer;
   z-index: 5 !important;
 }
@@ -417,21 +492,23 @@ li {
   padding-bottom: 10px;
   //margin-left: 7rem;
   width: 13rem;
-  font-size: 18px;
+  font-size: 12px;
   cursor: pointer;
   pointer-events: auto;
   z-index: 5 !important;
 }
 .footer {
   // max-width: 51vw;
-  // position: absolute;
+  //position: absolute;
   // //right: 55px;
-  // bottom: 0px;
+  bottom: 0px;
+  //background: white;
+  //z-index: 100;
 }
 
 .footer-images {
   display: grid;
-  grid-template-columns: repeat(3, 16.667vw);
+  grid-template-columns: repeat(3, 15vw);
 
   img {
     width: 100%;
@@ -473,6 +550,51 @@ li {
   //opacity: 0;
 }
 
+.toggle-font {
+  cursor: pointer;
+  position: absolute;
+  bottom: 10px;
+  right: 120px;
+  //font-size: 12px;
+  display: flex;
+  //align-items: flex-end;
+  //justify-content: flex-end;
+  //padding: 1rem;
+  .f {
+    padding-left: 10px;
+  }
+}
+
+.eighteen {
+  font-size: 18px;
+  .title {
+    font-size: 20px;
+  }
+}
+
+// .twentysix {
+//   font-size: 26px;
+//   .drop-down {
+//     grid-template-columns: repeat(5, 8vw);
+//   }
+//   .shipping {
+//     width: 15rem;
+//   }
+//   .info {
+//     width: 20rem;
+//   }
+//   .buy-button {
+//     width: 15rem;
+//   }
+//   .title {
+//     font-size: 28px;
+//   }
+//   .description-container {
+//     justify-content: flex-start;
+//     padding-left: 3rem;
+//   }
+// }
+
 //media queries tablet portrait
 @media only screen and (max-width: 768px) {
   .list {
@@ -482,6 +604,7 @@ li {
   }
   .content {
     display: none;
+    z-index: 5 !important;
   }
   .header {
     display: none;

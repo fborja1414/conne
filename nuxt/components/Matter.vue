@@ -13,10 +13,10 @@ export default {
     windowResize(event) {
       // this.startMatter();
       canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      if (window.innerWidth == 768) {
-        this.startMatter();
-      }
+      canvas.height = canvas.clientHeight;
+      // if (window.innerWidth == 768) {
+      //   this.startMatter();
+      // }
     },
     //matterjs function
     startMatter: function () {
@@ -60,18 +60,18 @@ export default {
         "DOMMouseScroll",
         mouseConstraint.mouse.mousewheel
       );
-      mouseConstraint.mouse.element.removeEventListener(
-        "touchmove",
-        mouseConstraint.mouse.mousemove
-      );
-      mouseConstraint.mouse.element.removeEventListener(
-        "touchstart",
-        mouseConstraint.mouse.mousedown
-      );
-      mouseConstraint.mouse.element.removeEventListener(
-        "touchend",
-        mouseConstraint.mouse.mouseup
-      );
+      // mouseConstraint.mouse.element.removeEventListener(
+      //   "touchmove",
+      //   mouseConstraint.mouse.mousemove
+      // );
+      // mouseConstraint.mouse.element.removeEventListener(
+      //   "touchstart",
+      //   mouseConstraint.mouse.mousedown
+      // );
+      // mouseConstraint.mouse.element.removeEventListener(
+      //   "touchend",
+      //   mouseConstraint.mouse.mouseup
+      // );
 
       // create boxes and a ground
       var boxA = Bodies.rectangle(400, 200, 100, 100, {
@@ -168,8 +168,8 @@ export default {
 
       function resizeCanvasToDisplaySize(canvas) {
         // look up the size the canvas is being displayed
-        const width = window.innerWidth;
-        const height = window.innerHeight;
+        const width = canvas.clientWidth;
+        const height = canvas.clientHeight;
         // If it's resolution does not match change it
         if (canvas.width !== width || canvas.height !== height) {
           canvas.width = width;
@@ -765,7 +765,7 @@ export default {
 
   mounted() {
     this.startMatter();
-    window.addEventListener("resize", this.windowResize);
+    // window.addEventListener("resize", this.windowResize);
   },
 };
 </script>
@@ -775,11 +775,12 @@ export default {
   position: fixed;
   top: 0px;
   left: 0px;
-  z-index: 4;
+  z-index: -1;
   //width: 100vw;
   // height: 100%;
   height: 100vh;
   background: transparent;
+  overflow: scroll;
   //pointer-events: none;
 }
 </style>
