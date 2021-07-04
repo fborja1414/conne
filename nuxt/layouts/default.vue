@@ -32,9 +32,9 @@ html {
 
 .body-content {
   position: relative;
-  display: flex;
   z-index: 3;
   margin: 0;
+  //max-width: 1650px;
   padding: 0 55px;
 }
 </style>

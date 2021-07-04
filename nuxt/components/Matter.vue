@@ -60,6 +60,18 @@ export default {
         "DOMMouseScroll",
         mouseConstraint.mouse.mousewheel
       );
+      mouseConstraint.mouse.element.removeEventListener(
+        "touchmove",
+        mouseConstraint.mouse.mousemove
+      );
+      mouseConstraint.mouse.element.removeEventListener(
+        "touchstart",
+        mouseConstraint.mouse.mousedown
+      );
+      mouseConstraint.mouse.element.removeEventListener(
+        "touchend",
+        mouseConstraint.mouse.mouseup
+      );
 
       // create boxes and a ground
       var boxA = Bodies.rectangle(400, 200, 100, 100, {

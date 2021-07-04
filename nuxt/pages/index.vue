@@ -1,6 +1,6 @@
 <template>
   <div class="body">
-    <div class="content">
+    <aside class="content">
       <div class="logo">
         <img class="image" src="~assets/logo.png" />
       </div>
@@ -10,7 +10,7 @@
         <img class="pic3" src="@/assets/PIC2.png" draggable="false" />
         <div class="extra-space"></div>
       </div>
-    </div>
+    </aside>
     <div class="header neue-light" id="header">
       <ul class="nav">
         <li>HOME</li>
@@ -127,8 +127,6 @@
           <img src="@/assets/jkjk.png" />
         </div>
       </div>
-
-      <Matter v-show="!dimensiontoggle" />
     </div>
     <list
       class="list"
@@ -205,6 +203,7 @@ export default {
 .body {
   display: flex;
   width: 100%;
+  flex-wrap: wrap;
 }
 
 .header {
@@ -212,14 +211,21 @@ export default {
   //display: flex;
   z-index: 4;
   font-size: 1rem;
-  justify-content: flex-end;
-  width: 50vw;
+  //justify-content: flex-end;
+  width: 50%;
+  height: 100vh;
+  overflow-y: scroll;
+  // display: block;
   // pointer-events: auto;
 }
 
 .content {
-  width: 50vw;
+  width: 50%;
   border-right: solid 1px black;
+  height: 100vh;
+  overflow: scroll;
+  display: block;
+  //padding: 2rem;
 }
 
 .logo {
@@ -236,6 +242,7 @@ export default {
 }
 
 .nav {
+  width: 100%;
   display: flex;
   justify-content: flex-end;
   list-style: none;
@@ -416,10 +423,10 @@ li {
   z-index: 5 !important;
 }
 .footer {
-  max-width: 51vw;
-  position: absolute;
-  //right: 55px;
-  bottom: 0px;
+  // max-width: 51vw;
+  // position: absolute;
+  // //right: 55px;
+  // bottom: 0px;
 }
 
 .footer-images {
