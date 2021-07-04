@@ -49,7 +49,11 @@
       </div>
       <div
         class="description-container"
-        :class="{ eighteen: eighteen, twentysix: twentysix }"
+        :class="{
+          eighteen: eighteen,
+          twentysix: twentysix,
+          forcewidth: twentysix,
+        }"
       >
         <div
           class="title neue-light"
@@ -591,10 +595,17 @@ li {
     font-size: 28px;
   }
   .description-container {
-    justify-content: flex-start;
-    padding-left: 3rem;
-    width: 15rem;
+    //justify-content: unset;
+    display: grid;
+    grid-template-columns: 40vw;
+    padding: 3rem;
   }
+}
+
+.forcewidth {
+  display: grid;
+  grid-template-columns: 40vw;
+  padding: 3rem;
 }
 
 //media queries tablet portrait
