@@ -1,6 +1,6 @@
 <template>
   <div class="body">
-    <aside class="content">
+    <div class="content">
       <div class="logo">
         <img class="image" src="~assets/logo.png" />
       </div>
@@ -10,7 +10,7 @@
         <img class="pic3" src="@/assets/PIC2.png" draggable="false" />
         <div class="extra-space"></div>
       </div>
-    </aside>
+    </div>
     <div class="header neue-light" id="header">
       <ul class="nav">
         <li>HOME</li>
@@ -268,14 +268,13 @@ export default {
 }
 
 .header {
-  //position: relative;
   //display: flex;
   z-index: 4;
   font-size: 1rem;
   //justify-content: flex-end;
   width: 50%;
-  height: 100vh;
-  overflow-y: scroll;
+  //height: 100vh;
+  //overflow-y: scroll;
   // display: block;
   // pointer-events: auto;
 }
@@ -283,8 +282,8 @@ export default {
 .content {
   width: 50%;
   border-right: solid 1px black;
-  height: 100vh;
-  overflow: scroll;
+  //height: 100vh;
+  //overflow: scroll;
   display: block;
   //padding: 2rem;
 }
@@ -499,7 +498,7 @@ li {
 }
 .footer {
   // max-width: 51vw;
-  //position: absolute;
+  position: absolute;
   // //right: 55px;
   bottom: 0px;
   //background: white;
@@ -538,7 +537,7 @@ li {
 .extra-space {
   margin: 0;
   padding: 0;
-  height: 116px;
+  height: 104px;
 }
 
 .firstfooter {
@@ -552,7 +551,7 @@ li {
 
 .toggle-font {
   cursor: pointer;
-  position: absolute;
+  position: fixed;
   bottom: 10px;
   right: 120px;
   //font-size: 12px;
@@ -560,6 +559,7 @@ li {
   //align-items: flex-end;
   //justify-content: flex-end;
   //padding: 1rem;
+  z-index: 5 !important;
   .f {
     padding-left: 10px;
   }
@@ -568,7 +568,7 @@ li {
 .eighteen {
   font-size: 18px;
   .title {
-    font-size: 20px;
+    font-size: 22px;
   }
 }
 

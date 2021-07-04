@@ -7,7 +7,7 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: "nuxt",
+    title: "CONNE",
     htmlAttrs: {
       lang: "en"
     },
@@ -17,7 +17,6 @@ export default {
       { hid: "description", name: "description", content: "" }
     ],
     link: [
-      { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
       { rel: "stylesheet", href: "https://use.typekit.net/hvb3jfi.css" },
       { rel: "stylesheet", href: "https://use.typekit.net/xbe8miv.css" }
     ]

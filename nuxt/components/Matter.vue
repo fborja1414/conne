@@ -13,7 +13,7 @@ export default {
     windowResize(event) {
       // this.startMatter();
       canvas.width = window.innerWidth;
-      canvas.height = canvas.clientHeight;
+      canvas.height = window.innerHeight;
       // if (window.innerWidth == 768) {
       //   this.startMatter();
       // }
@@ -168,8 +168,8 @@ export default {
 
       function resizeCanvasToDisplaySize(canvas) {
         // look up the size the canvas is being displayed
-        const width = canvas.clientWidth;
-        const height = canvas.clientHeight;
+        const width = window.innerWidth;
+        const height = window.innerHeight;
         // If it's resolution does not match change it
         if (canvas.width !== width || canvas.height !== height) {
           canvas.width = width;
@@ -775,12 +775,12 @@ export default {
   position: fixed;
   top: 0px;
   left: 0px;
-  z-index: -1;
+  z-index: 4;
   //width: 100vw;
   // height: 100%;
   height: 100vh;
   background: transparent;
-  overflow: scroll;
+  //overflow: scroll;
   //pointer-events: none;
 }
 </style>
