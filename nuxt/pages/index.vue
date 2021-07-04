@@ -562,6 +562,7 @@ li {
   right: 150px;
   //font-size: 12px;
   display: flex;
+  z-index: 5 !important;
   //align-items: flex-end;
   //justify-content: flex-end;
   //padding: 1rem;
@@ -574,6 +575,12 @@ li {
   font-size: 18px;
   .title {
     font-size: 20px;
+  }
+  .guide {
+    font-size: 15px;
+  }
+  .sizing {
+    font-size: 15px;
   }
 }
 
@@ -594,11 +601,11 @@ li {
   .title {
     font-size: 28px;
   }
-  .description-container {
-    //justify-content: unset;
-    display: grid;
-    grid-template-columns: 40vw;
-    padding: 3rem;
+  .guide {
+    font-size: 18px;
+  }
+  .sizing {
+    font-size: 18px;
   }
 }
 
@@ -606,6 +613,9 @@ li {
   display: grid;
   grid-template-columns: 40vw;
   padding: 3rem;
+  @media only screen and (max-width: 1217px) {
+    grid-template-columns: 30vw;
+  }
 }
 
 //media queries tablet portrait

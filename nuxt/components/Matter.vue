@@ -60,6 +60,10 @@ export default {
         "DOMMouseScroll",
         mouseConstraint.mouse.mousewheel
       );
+      mouseConstraint.mouse.element.removeEventListener(
+        "scroll",
+        mouseConstraint.mouse.mousewheel
+      );
       // mouseConstraint.mouse.element.removeEventListener(
       //   "touchmove",
       //   mouseConstraint.mouse.mousemove
@@ -781,6 +785,6 @@ export default {
   height: 100vh;
   background: transparent;
   //overflow: scroll;
-  //pointer-events: none;
+  pointer-events: none;
 }
 </style>
