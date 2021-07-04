@@ -1,6 +1,6 @@
 <template>
   <div class="body">
-    <div class="content">
+    <aside class="content">
       <div class="logo">
         <img class="image" src="~assets/logo.png" />
       </div>
@@ -10,7 +10,7 @@
         <img class="pic3" src="@/assets/PIC2.png" draggable="false" />
         <div class="extra-space"></div>
       </div>
-    </div>
+    </aside>
     <div class="header neue-light" id="header">
       <ul class="nav">
         <li>HOME</li>
@@ -38,6 +38,7 @@
         >
           18px
         </div>
+        <div class="f" @click="twentysix = true">26px</div>
       </div>
       <div class="toggle-container">
         <div class="toggle" @click="toggle3D()">
@@ -268,13 +269,14 @@ export default {
 }
 
 .header {
+  //position: relative;
   //display: flex;
   z-index: 4;
   font-size: 1rem;
   //justify-content: flex-end;
   width: 50%;
-  //height: 100vh;
-  //overflow-y: scroll;
+  height: 100vh;
+  overflow-y: scroll;
   // display: block;
   // pointer-events: auto;
 }
@@ -282,8 +284,8 @@ export default {
 .content {
   width: 50%;
   border-right: solid 1px black;
-  //height: 100vh;
-  //overflow: scroll;
+  height: 100vh;
+  overflow: scroll;
   display: block;
   //padding: 2rem;
 }
@@ -498,7 +500,7 @@ li {
 }
 .footer {
   // max-width: 51vw;
-  position: absolute;
+  //position: absolute;
   // //right: 55px;
   bottom: 0px;
   //background: white;
@@ -537,7 +539,7 @@ li {
 .extra-space {
   margin: 0;
   padding: 0;
-  height: 104px;
+  height: 116px;
 }
 
 .firstfooter {
@@ -551,15 +553,14 @@ li {
 
 .toggle-font {
   cursor: pointer;
-  position: fixed;
+  position: absolute;
   bottom: 10px;
-  right: 120px;
+  right: 150px;
   //font-size: 12px;
   display: flex;
   //align-items: flex-end;
   //justify-content: flex-end;
   //padding: 1rem;
-  z-index: 5 !important;
   .f {
     padding-left: 10px;
   }
@@ -568,32 +569,33 @@ li {
 .eighteen {
   font-size: 18px;
   .title {
-    font-size: 22px;
+    font-size: 20px;
   }
 }
 
-// .twentysix {
-//   font-size: 26px;
-//   .drop-down {
-//     grid-template-columns: repeat(5, 8vw);
-//   }
-//   .shipping {
-//     width: 15rem;
-//   }
-//   .info {
-//     width: 20rem;
-//   }
-//   .buy-button {
-//     width: 15rem;
-//   }
-//   .title {
-//     font-size: 28px;
-//   }
-//   .description-container {
-//     justify-content: flex-start;
-//     padding-left: 3rem;
-//   }
-// }
+.twentysix {
+  font-size: 26px;
+  .drop-down {
+    grid-template-columns: repeat(5, 8vw);
+  }
+  .shipping {
+    width: 15rem;
+  }
+  .info {
+    width: 20rem;
+  }
+  .buy-button {
+    width: 15rem;
+  }
+  .title {
+    font-size: 28px;
+  }
+  .description-container {
+    justify-content: flex-start;
+    padding-left: 3rem;
+    width: 15rem;
+  }
+}
 
 //media queries tablet portrait
 @media only screen and (max-width: 768px) {
