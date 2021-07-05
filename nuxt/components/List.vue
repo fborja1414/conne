@@ -107,6 +107,7 @@
       <div class="updated neue-light" v-if="carttext">ADDED</div>
     </div>
     <div class="shipping neue">Shipping &amp; Returns</div>
+
     <div class="info neue">How are we sustainable?</div>
 
     <div class="footer">

@@ -18,6 +18,12 @@ export default {
       //   this.startMatter();
       // }
     },
+
+    // mouse_move(e) {
+    //   const posX = e.clientX;
+    //   const posY = e.clientY;
+    // },
+
     //matterjs function
     startMatter: function () {
       //console.log(canvasWidth);
@@ -60,22 +66,19 @@ export default {
         "DOMMouseScroll",
         mouseConstraint.mouse.mousewheel
       );
+
       mouseConstraint.mouse.element.removeEventListener(
-        "scroll",
-        mouseConstraint.mouse.mousewheel
+        "touchmove",
+        mouseConstraint.mouse.mousemove
       );
-      // mouseConstraint.mouse.element.removeEventListener(
-      //   "touchmove",
-      //   mouseConstraint.mouse.mousemove
-      // );
-      // mouseConstraint.mouse.element.removeEventListener(
-      //   "touchstart",
-      //   mouseConstraint.mouse.mousedown
-      // );
-      // mouseConstraint.mouse.element.removeEventListener(
-      //   "touchend",
-      //   mouseConstraint.mouse.mouseup
-      // );
+      mouseConstraint.mouse.element.removeEventListener(
+        "touchstart",
+        mouseConstraint.mouse.mousedown
+      );
+      mouseConstraint.mouse.element.removeEventListener(
+        "touchend",
+        mouseConstraint.mouse.mouseup
+      );
 
       // create boxes and a ground
       var boxA = Bodies.rectangle(400, 200, 100, 100, {
@@ -767,9 +770,15 @@ export default {
     },
   },
 
+  // watch: {
+  //   if(mouse_move) {
+  //     this.startMatter(this.posX, this.posY);
+  //   },
+  // },
+
   mounted() {
     this.startMatter();
-    // window.addEventListener("resize", this.windowResize);
+    //window.addEventListener("mousemove", this.mouse_move);
   },
 };
 </script>
