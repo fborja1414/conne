@@ -279,8 +279,8 @@ export default {
   font-size: 1rem;
   //justify-content: flex-end;
   width: 50%;
-  height: 100vh;
-  overflow-y: scroll;
+  // height: 100vh;
+  // overflow-y: scroll;
   // display: block;
   // pointer-events: auto;
 }
@@ -288,8 +288,8 @@ export default {
 .content {
   width: 50%;
   border-right: solid 1px black;
-  height: 100vh;
-  overflow: scroll;
+  // height: 100vh;
+  // overflow: scroll;
   display: block;
   //padding: 2rem;
 }
@@ -504,7 +504,7 @@ li {
 }
 .footer {
   // max-width: 51vw;
-  //position: absolute;
+  position: absolute;
   // //right: 55px;
   bottom: 0px;
   //background: white;
@@ -543,7 +543,7 @@ li {
 .extra-space {
   margin: 0;
   padding: 0;
-  height: 116px;
+  height: 104px;
 }
 
 .firstfooter {
@@ -557,7 +557,7 @@ li {
 
 .toggle-font {
   cursor: pointer;
-  position: absolute;
+  position: fixed;
   bottom: 10px;
   right: 150px;
   //font-size: 12px;
