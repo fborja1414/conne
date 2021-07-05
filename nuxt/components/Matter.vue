@@ -794,6 +794,6 @@ export default {
   height: 100vh;
   background: transparent;
   //overflow: scroll;
-  pointer-events: none;
+  // pointer-events: none;
 }
 </style>
