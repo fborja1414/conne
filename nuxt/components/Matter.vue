@@ -86,31 +86,31 @@ export default {
         restitution: 0,
         friction: 0,
         strokeStyle: "black",
-        position: { x: 330, y: 200 },
+        position: { x: 330, y: -200 },
       });
       var boxB = Bodies.rectangle(400, 700, 100, 100, {
         density: 1.0006,
-        restitution: 0,
+        restitution: 0.5,
         friction: 0,
-        position: { x: 1020, y: 150 },
+        position: { x: 1020, y: -200 },
       });
       var boxC = Bodies.rectangle(400, 400, 100, 100, {
         density: 1.0006,
-        restitution: 0,
+        restitution: 1,
         friction: 0,
-        position: { x: 870, y: 500 },
+        position: { x: 870, y: -200 },
       });
       var boxD = Bodies.rectangle(400, 700, 100, 100, {
         density: 1.0006,
-        restitution: 0,
+        restitution: 0.5,
         friction: 0,
-        position: { x: 1050, y: 650 },
+        position: { x: 1050, y: -200 },
       });
       var boxE = Bodies.rectangle(400, 400, 100, 100, {
         density: 1.0006,
-        restitution: 0,
+        restitution: 0.9,
         friction: 0,
-        position: { x: 550, y: 500 },
+        position: { x: 550, y: -200 },
       });
       var ground = Bodies.rectangle(
         canvas.clientWidth,
