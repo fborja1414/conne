@@ -295,8 +295,8 @@ export default {
 }
 
 .logo {
-  position: sticky;
-  top: 0px;
+  //position: sticky;
+  //top: 0px;
   display: flex;
   padding: 2rem 0;
   z-index: 5 !important;
@@ -316,8 +316,8 @@ export default {
   list-style: none;
   padding: 1rem;
   padding-bottom: 4rem;
-  position: sticky;
-  top: 0px;
+  //position: sticky;
+  //top: 0px;
   mix-blend-mode: color-dodge;
   //background: white;
 }
